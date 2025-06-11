@@ -1,24 +1,26 @@
 const intercomClient = require('../../utils/intercomClient');
 
 /**
- * Asigns `active` value to company IDs array
+ * Asigns value of a custom attribute to company IDs array
  * @param {Array<string>} companyIds - Intercom Companies IDs array
- * @param {boolean} value - true or false
+ * @param {string} attribute - Custom attribute to set (e.g., 'active')
+ * @param {any} value - Value to set for the custom attribute (e.g., true/false)
+ * @returns {Promise<Array>} - Array of results indicating success or failure for each company ID
  */
-async function setActive(companyIds, value) {
+async function setAttribute(companyIds, attribute, value) {
     const results = [];
 
     for (const id of companyIds) {
         try {
             const res = await intercomClient.put(`/companies/${id}`, {
                 custom_attributes: {
-                    active: value,
+                    [attribute]: value,
                 },
             });
             results.push({ id, success: true });
         } catch (error) {
             console.error(
-                `Error setting active for company ${id}:`,
+                `Error setting attribute value for company ${id}:`,
                 error.response?.data || error.message
             );
             results.push({ id, success: false });
@@ -35,8 +37,5 @@ async function setActive(companyIds, value) {
 }
 
 // Use script
-const companiesToActive = [];
-const companiesToInactive = [];
-
-setActive(companiesToActive, true);
-setActive(companiesToInactive, false);
+const companiesToUpdate = [];
+setAttribute(companiesToUpdate, 'active', false);
