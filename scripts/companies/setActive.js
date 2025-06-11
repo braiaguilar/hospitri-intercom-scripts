@@ -1,4 +1,4 @@
-import { put } from '../utils/intercomClient';
+const intercomClient = require("../../utils/intercomClient");
 
 /**
  * Asigns `active` value to company IDs array
@@ -10,7 +10,7 @@ async function setActive(companyIds, value) {
 
     for (const id of companyIds) {
         try {
-            const res = await put(`/companies/${id}`, {
+            const res = await intercomClient.put(`/companies/${id}`, {
                 custom_attributes: {
                     active: value,
                 },
@@ -30,8 +30,11 @@ async function setActive(companyIds, value) {
             results.filter(r => r.success).length
         } successfully updated.`
     );
+    
+    return results;
 }
 
+// Use script
 const companiesToActive = [];
 const companiesToInactive = [];
 

@@ -1,8 +1,8 @@
-import { create } from "axios";
+const axios = require("axios");
 require("dotenv").config();
 
-const intercomClient = create({
-  baseURL: "https://api.intercom.io",
+const intercomClient = axios.create({
+  baseURL: process.env.INTERCOM_API_URL,
   headers: {
     Authorization: `Bearer ${process.env.INTERCOM_ACCESS_TOKEN}`,
     Accept: "application/json",
@@ -10,4 +10,4 @@ const intercomClient = create({
   },
 });
 
-export default intercomClient;
+module.exports = intercomClient;
