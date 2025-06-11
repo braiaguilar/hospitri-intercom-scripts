@@ -1,4 +1,4 @@
-const intercomClient = require("../../utils/intercomClient");
+const intercomClient = require('../../utils/intercomClient');
 
 /**
  * Asigns `active` value to company IDs array
@@ -30,7 +30,7 @@ async function setActive(companyIds, value) {
             results.filter(r => r.success).length
         } successfully updated.`
     );
-    
+
     return results;
 }
 

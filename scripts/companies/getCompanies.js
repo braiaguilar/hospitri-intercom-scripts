@@ -1,4 +1,4 @@
-const intercomClient = require("../../utils/intercomClient");
+const intercomClient = require('../../utils/intercomClient');
 
 /**
  * Fetches all companies from Intercom
@@ -13,8 +13,9 @@ async function getCompanies() {
                 id: company.id,
                 company_id: company.company_id,
                 name: company.name,
-                custom_attributes: company.custom_attributes
-            }))
+                active: company.custom_attributes.active,
+                listings: company.custom_attributes.listings,
+            })),
         });
         return companies;
     } catch (error) {
