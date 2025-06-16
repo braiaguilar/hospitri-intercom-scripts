@@ -4,7 +4,7 @@ const intercomClient = require('../../utils/intercomClient');
  * Fetches all companies from Intercom
  * @returns {Promise<Array>} - Array of company objects
  */
-async function getCompanies() {
+const getCompanies = async () => {
     try {
         const { data: companies } = await intercomClient.get('/companies');
         console.log({
@@ -25,7 +25,7 @@ async function getCompanies() {
         );
         throw error;
     }
-}
+};
 
 // Use script
 getCompanies();
