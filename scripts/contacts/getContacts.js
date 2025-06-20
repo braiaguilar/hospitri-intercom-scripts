@@ -8,7 +8,7 @@ const intercomClient = require('../../utils/intercomClient');
 const getContacts = async (includeTestContacts = true) => {
     try {
         const { data: contacts } = await intercomClient.get(
-            '/contacts?per_page=50'
+            '/contacts?per_page=100'
         );
         if (!includeTestContacts) {
             contacts.data = contacts.data.filter(

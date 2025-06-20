@@ -3,7 +3,7 @@ const intercomClient = require('../../utils/intercomClient');
 /**
  * Sets contacts to companies in Intercom
  * @param {Array<string>} companyIds - Array of Intercom Company IDs
- * @param {Array<Array<string>>} contacts - Array of contact IDs for each company
+ * @param {Array<Array<string>>} contacts - Array of arrays of contact IDs for each company
  * @returns {Promise<void>} - Array of results indicating success or failure for each company ID
  */
 const setContactsToCompanies = async (companyIds, contacts) => {
@@ -45,7 +45,7 @@ const setContactsToCompanies = async (companyIds, contacts) => {
     );
 
     return results;
-}
+};
 
 // Use script
 const companies = [];
